@@ -15,50 +15,42 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/txtGameTitle"
+        <ImageView
+            android:id="@+id/imageView4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textColor="@color/colorAccent"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:layout_weight="1"
-            android:gravity="top|center"
-            android:text="practice Your quick counting skills"
-            android:textSize="20sp"
-            android:textStyle="italic" />
+            app:srcCompat="@drawable/quicknumberslogo" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtPoints"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:gravity="center"
                 android:text="Points: 0"
-                android:textSize="22sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtTimer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="right"
                 android:text="Timer: 0"
                 android:textSize="30sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -75,8 +67,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="2 + 4 = ?"
+            android:gravity="right|center"
+            android:text="2 + 4 ="
+            android:textColor="@color/colorAccent"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="left|center"
             android:textColor="@color/colorAccent"
             android:textSize="40sp"
             android:textStyle="bold" />
@@ -104,175 +107,161 @@
                 android:rowCount="4">
 
 
-                <ImageButton
-                    android:id="@+id/imageButton1"
+                <Button
+                    android:id="@+id/button1"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:contextClickable="false"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:onClick="Compare"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/button1" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="1"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
-                <ImageButton
-                    android:id="@+id/imageButton2"
+                <Button
+                    android:id="@+id/button2"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/button2" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="2"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
-                <ImageButton
-                    android:id="@+id/imageButton3"
+                <Button
+                    android:id="@+id/button3"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/button3" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="3"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
-                <ImageButton
-                    android:id="@+id/imageButton4"
+                <Button
+                    android:id="@+id/button4"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/button4" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="4"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
-                <ImageButton
-                    android:id="@+id/imageButton5"
+                <Button
+                    android:id="@+id/button5"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/button5" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="5"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
-                <ImageButton
-                    android:id="@+id/imageButton6"
+                <Button
+                    android:id="@+id/button6"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/button6" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="6"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
-                <ImageButton
-                    android:id="@+id/imageButton7"
+                <Button
+                    android:id="@+id/button7"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/button7" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="7"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
-                <ImageButton
-                    android:id="@+id/imageButton8"
+                <Button
+                    android:id="@+id/button8"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/button8" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="8"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
-                <ImageButton
-                    android:id="@+id/imageButton9"
+                <Button
+                    android:id="@+id/button9"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/button9" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="9"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
-                <ImageButton
-                    android:id="@+id/imageButtonEmpty"
+                <Button
+                    android:id="@+id/buttonclear"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/button" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="C"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
-                <ImageButton
-                    android:id="@+id/imageButton0"
+                <Button
+                    android:id="@+id/button0"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/button0" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="0"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
-                <ImageButton
-                    android:id="@+id/imageButtonC"
+                <Button
+                    android:id="@+id/buttonequal"
                     android:layout_width="75dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:adjustViewBounds="false"
-                    android:background="#00000000"
-                    android:fadeScrollbars="false"
-                    android:fitsSystemWindows="false"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/buttonclear" />
+                    android:background="@drawable/button"
+                    android:soundEffectsEnabled="true"
+                    android:text="="
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="40sp" />
 
 
             </GridLayout>

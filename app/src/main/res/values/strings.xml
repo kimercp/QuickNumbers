@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Quick Numbers</string>
     <string name="description">practice Your quick counting skills</string>
+
+    <string name="action_exit">Exit</string>
+    <string name="dialog_confirmExit">Do You really want to exit the app?</string>
+    <string name="dialog_Yes">Yes</string>
+    <string name="dialog_No">No</string>
+    <string name="dialog_tryAgain">Try again</string>
+    <string name="dialog_again">Do You want to try again?</string>
 </resources>
