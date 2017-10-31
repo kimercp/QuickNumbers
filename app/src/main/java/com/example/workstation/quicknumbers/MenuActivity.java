@@ -1,17 +1,35 @@
 package com.example.workstation.quicknumbers;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
+
+    private Typeface typeface;
+    private TextView txtPoints;
+    private TextView txtPointsNumber;
+    private TextView txtHome;
+    private int points = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        txtPoints = (TextView) findViewById(R.id.txtPoints);
+        txtPointsNumber = (TextView) findViewById(R.id.txtPointsNumber);
+        txtHome = (TextView) findViewById(R.id.txtHome);
+
+
+        typeface = Typeface.createFromAsset(getAssets(), "fonts/comic_andy.ttf");
+        txtPoints.setTypeface(typeface);
+        txtHome.setTypeface(typeface);
+        txtPointsNumber.setTypeface(typeface);
+        txtPointsNumber.setText(Integer.toString(points));
 
         MakeFullscreen();
     }

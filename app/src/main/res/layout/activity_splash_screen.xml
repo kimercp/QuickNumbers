@@ -9,40 +9,37 @@
     tools:context="com.example.workstation.quicknumbers.SplashScreenActivity">
 
     <LinearLayout
+        android:id="@+id/secondLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background"
+        android:background="@drawable/backgroundimage"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <TextView
+            android:id="@+id/txtLogo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:srcCompat="@drawable/quicknumberslogo" />
+            android:layout_marginTop="50dp"
+            android:gravity="bottom|center"
+            android:text="@string/app_name"
+            android:textSize="65sp" />
 
-        <ImageView
-            android:id="@+id/imageView2"
+        <TextView
+            android:id="@+id/txtSecondLineLogo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            app:srcCompat="@drawable/improveyourskill" />
+            android:gravity="top|center"
+            android:text="@string/improveyourskill"
+            android:textSize="45sp" />
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
             app:srcCompat="@drawable/logoteacher" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="#00000000"
-            android:onClick="OpenMainActivity"
-            app:srcCompat="@drawable/buttonstart" />
     </LinearLayout>
 
 </LinearLayout>

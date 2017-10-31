@@ -131,7 +131,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /* Countdown Timer */
     private void Countdown(int miliSeconds) {
-        // countdown timer for alarms this is only for test (pozniej to wykasuj jak zrobisz do godzin
         new CountDownTimer(miliSeconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -148,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onFinish() {
                 // Display the points and ask if user wants restart game
-
                 new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle)
                     .setTitle(R.string.dialog_tryAgain)
                     .setMessage(R.string.dialog_again)
@@ -156,7 +154,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .setPositiveButton(R.string.dialog_Yes, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-//  new activity , splash screen ???????
                         }
                     })
                     .setNegativeButton(R.string.dialog_No, new DialogInterface.OnClickListener(){

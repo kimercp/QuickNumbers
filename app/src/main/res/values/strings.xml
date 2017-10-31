@@ -8,4 +8,8 @@
     <string name="dialog_No">No</string>
     <string name="dialog_tryAgain">Try again</string>
     <string name="dialog_again">Do You want to try again?</string>
+    <string name="yourhome">Your Home</string>
+    <string name="points">Points : </string>
+    <string name="improveyourskill">Improve your skill</string>
+
 </resources>
