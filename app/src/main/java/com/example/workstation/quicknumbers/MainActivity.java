@@ -1,6 +1,7 @@
 package com.example.workstation.quicknumbers;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -20,13 +21,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int firstNumber;
     private int secondNumber;
     private int level = 1;
-    private int timeToCountdown = 10000;
+    private int timeToCountdown = 60000; // in miliseconds (to achieve seconds divide by 1000)
     private int points;
+    private String operator = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // getting data passed from previous Menu activity
+        Intent intent = getIntent();
+        Bundle extrasBundle = intent.getExtras();
+        if (!extrasBundle.isEmpty()) {
+            operator = extrasBundle.getString("operator");
+        }
 
         txtTimer = (TextView) findViewById(R.id.txtTimer);
         txtPoints = (TextView) findViewById(R.id.txtPoints);
@@ -44,8 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button button7 = (Button) findViewById(R.id.button7);
         Button button8 = (Button) findViewById(R.id.button8);
         Button button9 = (Button) findViewById(R.id.button9);
-        Button buttonclear = (Button) findViewById(R.id.buttonclear);
-        Button buttonequal = (Button) findViewById(R.id.buttonequal);
+        Button buttonClear = (Button) findViewById(R.id.buttonclear);
+        Button buttonEqual = (Button) findViewById(R.id.buttonequal);
         /* Set OnClickListener for each button */
         button0.setOnClickListener(this);
         button1.setOnClickListener(this);
@@ -57,15 +66,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button7.setOnClickListener(this);
         button8.setOnClickListener(this);
         button9.setOnClickListener(this);
-        buttonclear.setOnClickListener(this);
-        buttonequal.setOnClickListener(this);
+        buttonClear.setOnClickListener(this);
+        buttonEqual.setOnClickListener(this);
 
         MakeFullscreen();
 
-        // Draw numbers to calculate level 1 (max 9 levels)
-        DrawNumbers(level);
-        // start countdown (30 secs)
+        // start countdown with specific amount of time
         Countdown(timeToCountdown);
+
+        // draw numbers for calculation
+        NewCalculation(level);
+    }
+
+    /* Random the digits */
+    private void NewCalculation(int level) {
+        // chose calculation type
+        switch (operator) {
+            case "plus":
+                // draw random numbers for calculation
+                firstNumber = drawNumber(0,level*2);
+                secondNumber = drawNumber(0,level*2);
+                txtQuestion.setText(firstNumber + " + " + secondNumber + " = ");
+                break;
+            case "minus":
+                // draw random numbers for calculation
+                firstNumber = drawNumber(0,level*2);
+                secondNumber = drawNumber(0,level*2);
+                while (firstNumber < secondNumber) {
+                    firstNumber = drawNumber(0,level*2);
+                    secondNumber = drawNumber(0,level*2);
+                }
+                txtQuestion.setText(firstNumber + " - " + secondNumber + " = ");
+                break;
+            case "multiply":
+                // draw random numbers for calculation
+                firstNumber = drawNumber(0,1);
+                secondNumber = drawNumber(1,1);
+                txtQuestion.setText(firstNumber + " * " + secondNumber + " = ");
+                break;
+            case "divide":
+                firstNumber = drawNumber(0,level);
+                secondNumber = drawNumber(1,level);
+                while ((firstNumber % secondNumber) != 0) {
+                    firstNumber = drawNumber(0,level);
+                    secondNumber = drawNumber(1,level);
+                }
+                txtQuestion.setText(firstNumber + " / " + secondNumber + " = ");
+                break;
+        }
+    }
+
+    private int drawNumber(int addToDrawValue, int level) {
+        int temporary = (int) (Math.random() * 10 * level);
+        // add 1 because draw number 0 is not desired (can't divide by zero)
+        return temporary + addToDrawValue;
     }
 
     @Override
@@ -73,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btn = (Button) findViewById(v.getId());
         String text = btn.getText().toString();
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.buttonclear:
                 ClearTextResult();
                 break;
@@ -82,22 +136,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             default:
                 String currentText = txtAnswer.getText().toString();
-                if (currentText.length() < 3) txtAnswer.setText(currentText+text);
+                if (currentText.length() < 3) txtAnswer.setText(currentText + text);
                 break;
 
         }
     }
 
     private void CompareResult() {
-        if (firstNumber+secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
-            // Change this for sound
-            Toast.makeText(this,"Bravo",Toast.LENGTH_SHORT).show();
-            points++;
-            DrawNumbers(level);
+
+        switch (operator) {
+            case "plus":
+                if (firstNumber + secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
+                    // Change this for sound
+                    Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
+                    points++;
+                    NewCalculation(level);
+                } else
+                    Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                // reset textview with users result
+                ClearTextResult();
+                break;
+            case "minus":
+                if (firstNumber - secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
+                    // Change this for sound
+                    Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
+                    points++;
+                    NewCalculation(level);
+                } else
+                    Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                // reset textview with users result
+                ClearTextResult();
+                break;
+            case "multiply":
+                if (firstNumber * secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
+                    // Change this for sound
+                    Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
+                    points++;
+                    NewCalculation(level);
+                } else
+                    Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                // reset textview with users result
+                ClearTextResult();
+                break;
+            case "divide":
+                if (firstNumber / secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
+                    // Change this for sound
+//                    Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
+                    points++;
+                    NewCalculation(level);
+                } else
+                    Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                // reset textview with users result
+                ClearTextResult();
+                break;
         }
-        else Toast.makeText(this,"Wrong",Toast.LENGTH_SHORT).show(); // Change this for sound
-        // reset textview with users result
-        ClearTextResult();
+
+        txtPoints.setText("Points: " + Integer.toString(points));
     }
 
     private void ClearTextResult() {
@@ -122,12 +216,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    /* Random the digits */
-    private void DrawNumbers(int level){
-        firstNumber = (int) (Math.random()*10*level);
-        secondNumber = (int) (Math.random()*10*level);
-        txtQuestion.setText(firstNumber + " + " + secondNumber + " = ");
-    }
 
     /* Countdown Timer */
     private void Countdown(int miliSeconds) {
@@ -135,42 +223,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onTick(long millisUntilFinished) {
                 int minutesLeft = (int) millisUntilFinished / 60000;
-                int secondsLeft = (int) (millisUntilFinished % 60000) / 1000;
+                int secondsLeft = (int) ((millisUntilFinished % 60000) / 1000);
                 if (secondsLeft < 10)
                     txtTimer.setText(Integer.toString(minutesLeft) + ":0" + secondsLeft);
                 else
                     txtTimer.setText(Integer.toString(minutesLeft) + ":" + secondsLeft);
-
-                txtPoints.setText("Points: " + Integer.toString(points));
             }
 
             @Override
             public void onFinish() {
                 // Display the points and ask if user wants restart game
                 new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle)
-                    .setTitle(R.string.dialog_tryAgain)
-                    .setMessage(R.string.dialog_again)
-                    .setIcon(null)
-                    .setPositiveButton(R.string.dialog_Yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    })
-                    .setNegativeButton(R.string.dialog_No, new DialogInterface.OnClickListener(){
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            System.exit(0);
-                        }
-                    })
-                    .show();
-                // reset all game variables to default values
-                ResetGameVariables();
+                        .setTitle(R.string.dialog_tryAgain)
+                        .setMessage(R.string.dialog_again)
+                        .setIcon(null)
+                        .setPositiveButton(R.string.dialog_Yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // reset all game variables to default values
+                                ResetGameVariables();
+                            }
+                        })
+                        .setNegativeButton(R.string.dialog_No, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                System.exit(0);
+                            }
+                        })
+                        .show();
+
+                //ResetGameVariables();
             }
         }.start();
     }
 
     /* Reset all game variables to default values */
-    private void ResetGameVariables(){
+    private void ResetGameVariables() {
         points = 0;
         level = 1;
         timeToCountdown = 30000;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="#000000"
     android:orientation="vertical"
     tools:context="com.example.workstation.quicknumbers.SplashScreenActivity">
 
@@ -12,7 +12,7 @@
         android:id="@+id/secondLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/backgroundimage"
+        android:background="@drawable/background"
         android:orientation="vertical">
 
         <TextView
@@ -33,11 +33,12 @@
             android:textSize="45sp" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imvLogo"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_gravity="center"
-            android:visibility="invisible"
+            android:background="#00000000"
+            android:visibility="visible"
             app:srcCompat="@drawable/logoteacher" />
 
     </LinearLayout>

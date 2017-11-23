@@ -1,20 +1,18 @@
 package com.example.workstation.quicknumbers;
 
-import android.content.DialogInterface;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.support.annotation.ColorInt;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -31,9 +29,29 @@ public class SplashScreenActivity extends AppCompatActivity {
         Typeface comic_andyFont = Typeface.createFromAsset(getAssets(), "fonts/comic_andy.ttf");
         txtLogo.setTypeface(gooddp__Font);
         txtSecondLineLogo.setTypeface(comic_andyFont);
+        LinearLayout secondLogo = (LinearLayout) findViewById(R.id.secondLayout);
 
         MakeFullscreen();
-        Countdown(2500);
+
+        ImageView imgLogo = (ImageView) findViewById(R.id.imvLogo);
+        // Make the object 50% transparent
+        ObjectAnimator anim = ObjectAnimator.ofFloat(imgLogo, "alpha", 0f, 1f);
+        anim.setDuration(3000); // duration 3 seconds
+        anim.start();
+
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(txtSecondLineLogo, "alpha", 0f, 1f);
+        anim1.setDuration(3000); // duration 3 seconds
+        anim1.start();
+
+        ObjectAnimator anim2 = ObjectAnimator.ofFloat(txtLogo, "alpha", 0f, 1f);
+        anim2.setDuration(3000); // duration 3 seconds
+        anim2.start();
+
+        ObjectAnimator anim3 = ObjectAnimator.ofFloat(secondLogo, "alpha", 0f, 1f);
+        anim3.setDuration(3000); // duration 3 seconds
+        anim3.start();
+
+        //Countdown(2500);
         /* This will open new activity after a specific amount of time (Splash screen) */
         new Handler().postDelayed(new Runnable() {
             @Override
