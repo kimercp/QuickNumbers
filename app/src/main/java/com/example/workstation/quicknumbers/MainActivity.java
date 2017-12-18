@@ -1,11 +1,11 @@
 package com.example.workstation.quicknumbers;
 
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -21,14 +21,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int firstNumber;
     private int secondNumber;
     private int level = 1;
-    private int timeToCountdown = 60000; // in miliseconds (to achieve seconds divide by 1000)
+    private int timeToCountdown = 30000; // in miliseconds (to achieve seconds divide by 1000)
     private int points;
     private String operator = "";
+    private SharedPreferences sharedpreferences;
+    private String mypreference = "mypreference";
+    private String pointsKeySharedPreference = "pointsKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        txtTimer = (TextView) findViewById(R.id.txtTimer);
+        txtPoints = (TextView) findViewById(R.id.txtPoints);
+        txtQuestion = (TextView) findViewById(R.id.txtQuestion);
+        txtAnswer = (TextView) findViewById(R.id.txtAnswer);
+
+        // full screen on device
+        MakeFullscreen();
+        // change default font
+        SetCustomFonts();
+
+        // get the points from sharedPreferences file
+        GetSharedPreferencesData();
+        // display actual number of points
+        txtPoints.setText(getString(R.string.points) +" "+ Integer.toString(points));
 
         // getting data passed from previous Menu activity
         Intent intent = getIntent();
@@ -36,11 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (!extrasBundle.isEmpty()) {
             operator = extrasBundle.getString("operator");
         }
-
-        txtTimer = (TextView) findViewById(R.id.txtTimer);
-        txtPoints = (TextView) findViewById(R.id.txtPoints);
-        txtQuestion = (TextView) findViewById(R.id.txtQuestion);
-        txtAnswer = (TextView) findViewById(R.id.txtAnswer);
 
         /* Buttons */
         Button button0 = (Button) findViewById(R.id.button0);
@@ -69,13 +82,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonClear.setOnClickListener(this);
         buttonEqual.setOnClickListener(this);
 
-        MakeFullscreen();
-
         // start countdown with specific amount of time
         Countdown(timeToCountdown);
 
         // draw numbers for calculation
         NewCalculation(level);
+    }
+
+    /* Hide UI action bar and make the app fullscreen */
+    private void MakeFullscreen() {
+        getSupportActionBar().hide();
+        // API 19 (Kit Kat)
+        if (Build.VERSION.SDK_INT >= 19) {
+            getWindow().getDecorView().setSystemUiVisibility(
+//                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            );
+        } else {
+            if (Build.VERSION.SDK_INT > 10) {
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            }
+        }
+    }
+
+    private void SetCustomFonts() {
+        Typeface comic_andyFont = Typeface.createFromAsset(getAssets(), "fonts/comic_andy.ttf");
+        txtPoints.setTypeface(comic_andyFont);
+        txtTimer.setTypeface(comic_andyFont);
+    }
+
+    private void GetSharedPreferencesData() {
+        sharedpreferences  = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
+        // get the number of points form shared preferences file on device
+        if (sharedpreferences.contains(pointsKeySharedPreference)) {
+            points  = sharedpreferences.getInt(pointsKeySharedPreference, 0);
+        } else points = 0;
     }
 
     /* Random the digits */
@@ -151,8 +194,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
                     points++;
                     NewCalculation(level);
-                } else
+                } else {
+                    if (points > 0) points--;
                     Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                }
                 // reset textview with users result
                 ClearTextResult();
                 break;
@@ -162,8 +207,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
                     points++;
                     NewCalculation(level);
-                } else
+                } else {
+                    if (points > 0) points--;
                     Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                }
                 // reset textview with users result
                 ClearTextResult();
                 break;
@@ -173,8 +220,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
                     points++;
                     NewCalculation(level);
-                } else
+                } else {
+                    if (points > 0) points--;
                     Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                }
                 // reset textview with users result
                 ClearTextResult();
                 break;
@@ -184,56 +233,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
                     points++;
                     NewCalculation(level);
-                } else
+                } else {
+                    if (points > 0) points--;
                     Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                }
                 // reset textview with users result
                 ClearTextResult();
                 break;
         }
-
-        txtPoints.setText("Points: " + Integer.toString(points));
+        txtPoints.setText(getString(R.string.points) +" "+ Integer.toString(points));
     }
 
     private void ClearTextResult() {
         txtAnswer.setText("");
     }
 
-    /* Hide UI action bar and make the app fullscreen */
-    private void MakeFullscreen() {
-        getSupportActionBar().hide();
-        // API 19 (Kit Kat)
-        if (Build.VERSION.SDK_INT >= 19) {
-            getWindow().getDecorView().setSystemUiVisibility(
-//                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-            );
-        } else {
-            if (Build.VERSION.SDK_INT > 10) {
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            }
-        }
-    }
-
-
     /* Countdown Timer */
     private void Countdown(int miliSeconds) {
         new CountDownTimer(miliSeconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                int minutesLeft = (int) millisUntilFinished / 60000;
                 int secondsLeft = (int) ((millisUntilFinished % 60000) / 1000);
                 if (secondsLeft < 10)
-                    txtTimer.setText(Integer.toString(minutesLeft) + ":0" + secondsLeft);
+                    txtTimer.setText(getString(R.string.timer) +" 0" + secondsLeft);
                 else
-                    txtTimer.setText(Integer.toString(minutesLeft) + ":" + secondsLeft);
+                    txtTimer.setText(getString(R.string.timer) +" "+ secondsLeft);
             }
 
             @Override
             public void onFinish() {
-                // Display the points and ask if user wants restart game
-                new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle)
+                // display the points and store them in shared preferences
+               /* new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle)
                         .setTitle(R.string.dialog_tryAgain)
                         .setMessage(R.string.dialog_again)
                         .setIcon(null)
@@ -250,20 +280,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 System.exit(0);
                             }
                         })
-                        .show();
+                        .show();*/
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putInt(pointsKeySharedPreference, points);
+                editor.commit();
 
-                //ResetGameVariables();
+                Toast.makeText(MainActivity.this, "You have "+ Integer.toString(points) + " points.", Toast.LENGTH_SHORT).show();
+
+                System.exit(0);
             }
         }.start();
-    }
-
-    /* Reset all game variables to default values */
-    private void ResetGameVariables() {
-        points = 0;
-        level = 1;
-        timeToCountdown = 30000;
-        firstNumber = 0;
-        secondNumber = 0;
-        ClearTextResult();
     }
 }
