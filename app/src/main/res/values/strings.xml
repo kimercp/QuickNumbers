@@ -6,11 +6,17 @@
     <string name="dialog_confirmExit">Do You really want to exit the app?</string>
     <string name="dialog_Yes">Yes</string>
     <string name="dialog_No">No</string>
-    <string name="dialog_tryAgain">Try again</string>
-    <string name="dialog_again">Do You want to try again?</string>
+    <string name="dialog_Congrats">Congrats</string>
+    <string name="dialog_OK">OK</string>
+    <string name="dialog_tryHarder">Do You want to try harder level?</string>
+    <string name="dialog_HarderLevel">You can have more points for good answer and only minus 1 point for bad answer.</string>
+    <string name="noMoreLevels">You have reach the last level. Thank You.</string>
     <string name="yourhome">Your Home</string>
     <string name="points">Points : </string>
     <string name="timer">Timer : </string>
     <string name="improveyourskill">Improve your skill</string>
+    <string name="youHave">You have </string>
+    <string name="pointsWord"> points.</string>
+
 
 </resources>
