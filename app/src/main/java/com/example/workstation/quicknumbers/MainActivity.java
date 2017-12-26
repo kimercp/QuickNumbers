@@ -4,16 +4,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,6 +25,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView txtPoints;
     private TextView txtQuestion;
     private TextView txtAnswer;
+    private TextView txtLevel;
+
+    private MediaPlayer correctSoundMP;
+    private MediaPlayer incorrectSoundMP;
 
     // first random generated number displayed to user
     private int firstNumber;
@@ -47,8 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // user points are saved in shared preferences
     private String pointsKeySharedPreference = "pointsKey";
 
-    // time in mili seconds to delay when any message needs to be display to user
-    private int delayTimeInMiliSeconds = 3000;
     private CountDownTimer timerSeconds;
 
     // keep the miliSeconds left in countdown timer, it useful when user pause the game
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtPoints = (TextView) findViewById(R.id.txtPoints);
         txtQuestion = (TextView) findViewById(R.id.txtQuestion);
         txtAnswer = (TextView) findViewById(R.id.txtAnswer);
+        txtLevel = (TextView) findViewById(R.id.txtLevel);
 
         // change default font
         SetCustomFonts();
@@ -75,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // display actual number of points
         txtPoints.setText(getString(R.string.points) + " " + Integer.toString(points));
+        // display actual number of level
+        txtLevel.setText(getString(R.string.levels) + " " + Integer.toString(level));
 
         // getting data passed from previous Menu activity
         Intent intent = getIntent();
@@ -109,6 +113,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button9.setOnClickListener(this);
         buttonClear.setOnClickListener(this);
         buttonEqual.setOnClickListener(this);
+
+        // sounds when user give good or wrong answer
+        correctSoundMP = MediaPlayer.create(this, R.raw.correct_sound);
+        incorrectSoundMP = MediaPlayer.create(this, R.raw.incorrect_sound);
     }
 
     @Override
@@ -158,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Typeface comic_andyFont = Typeface.createFromAsset(getAssets(), "fonts/comic_andy.ttf");
         txtPoints.setTypeface(comic_andyFont);
         txtTimer.setTypeface(comic_andyFont);
+        txtLevel.setTypeface(comic_andyFont);
     }
 
     private void GetSharedPreferencesData() {
@@ -245,12 +254,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case "plus":
                 if (firstNumber + secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
                     // Change this for sound
-                    Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
+                    correctSoundMP.start();
                     points += level;
                     NewCalculation(level);
                 } else {
                     if (points > 0) points--;
-                    Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                    incorrectSoundMP.start();
                 }
                 // reset textview with users result
                 ClearTextResult();
@@ -258,12 +267,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case "minus":
                 if (firstNumber - secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
                     // Change this for sound
-                    Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
+                    correctSoundMP.start();
                     points += 2 * level;
                     NewCalculation(level);
                 } else {
                     if (points > 0) points--;
-                    Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                    incorrectSoundMP.start();
                 }
                 // reset textview with users result
                 ClearTextResult();
@@ -271,26 +280,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case "multiply":
                 if (firstNumber * secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
                     // Change this for sound
-                    Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
+                    correctSoundMP.start();
                     points += 3 * level;
                     NewCalculation(level);
                 } else {
                     if (points > 0) points--;
-                    Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                    incorrectSoundMP.start();
                 }
                 // reset textview with users result
                 ClearTextResult();
                 break;
             case "divide":
                 if (firstNumber / secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
-                    // Change this for sound
-//                    Toast.makeText(this, "Bravo", Toast.LENGTH_SHORT).show();
+                    correctSoundMP.start();
                     // more points because divide is the hardest calculation
                     points += 4 * level;
                     NewCalculation(level);
                 } else {
                     if (points > 0) points--;
-                    Toast.makeText(this, "Wrong", Toast.LENGTH_SHORT).show(); // Change this for sound
+                    incorrectSoundMP.start();
                 }
                 // reset textview with users result
                 ClearTextResult();
@@ -355,20 +363,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     ClearTextResult();
                                     // set as false because user answer and wants to continue game
                                     isUserToQuestionActive = false;
+                                    // display actual number of level
+                                    txtLevel.setText(getString(R.string.levels) + " " + Integer.toString(level));
                                     StartGame();
                                 }
                             })
                             .setNegativeButton(R.string.dialog_No, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // This will close this activity after a specific amount of time
-                                    Toast.makeText(MainActivity.this, getString(R.string.youHave) + Integer.toString(points) + getString(R.string.pointsWord), Toast.LENGTH_SHORT).show();
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            finish();
-                                        }
-                                    }, delayTimeInMiliSeconds);
+                                    finish();
                                 }
                             })
                             .setCancelable(false)

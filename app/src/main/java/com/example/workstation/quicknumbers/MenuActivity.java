@@ -31,11 +31,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         // change default font
         SetCustomFonts();
 
-        // get the data from sharedPreferences file
-        GetSharedPreferencesData();
-        // display the actual number of points
-        txtPointsNumber.setText(Integer.toString(points));
-
         /* Buttons */
         ImageButton btnPlus = (ImageButton) findViewById(R.id.btnPlus);
         ImageButton btnMinus = (ImageButton) findViewById(R.id.btnMinus);
@@ -51,6 +46,15 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         btnDivide.setOnClickListener(this);
         btnHome.setOnClickListener(this);
         btnShop.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // get the data from sharedPreferences file
+        GetSharedPreferencesData();
+        // display the actual number of points
+        txtPointsNumber.setText(Integer.toString(points));
     }
 
     /* Hide UI action bar and make the app fullscreen */
