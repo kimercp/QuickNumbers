@@ -134,21 +134,21 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.btnHome:
-//                intent = new Intent(this, HomeActivity.class);
-//
-//                // home items keep in database, internal file or sharedpreferences
-//
-//                startActivity(intent);
+                intent = new Intent(this, HomeActivity.class);
+
+                // home items keep in database, internal file or sharedpreferences
+
+                startActivity(intent);
                 break;
             case R.id.btnShop:
-//                intent = new Intent(this, ShopActivity.class);
-//
-//                // passing operator to new activity
-//                bundle = new Bundle();
-//                bundle.putInt("points",points);
-//
-//                intent.putExtras(bundle);
-//                startActivity(intent);
+                intent = new Intent(this, ShopActivity.class);
+
+                // passing operator to new activity
+                bundle = new Bundle();
+                bundle.putInt("points",points);
+                intent.putExtras(bundle);
+
+                startActivity(intent);
                 break;
         }
     }
