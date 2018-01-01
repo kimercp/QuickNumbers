@@ -29,11 +29,11 @@ public class SplashScreenActivity extends AppCompatActivity {
         txtSecondLineLogo = (TextView) findViewById(R.id.txtSecondLineLogo);
 
         // full screen on device
-        MakeFullscreen();
+        makeFullscreen();
         // change default font
-        SetCustomFonts();
+        setCustomFonts();
         // make a nice animation effect from not visible to visible screen (splash screen)
-        StartSplashScreen();
+        startSplashScreen();
 
         /* This will open new activity after a specific amount of time (Splash screen) */
         new Handler().postDelayed(new Runnable() {
@@ -46,7 +46,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         }, splashScreenTime);
     }
 
-    private void SetCustomFonts() {
+    private void setCustomFonts() {
         // set specific font from directory Assets
         Typeface gooddp__Font = Typeface.createFromAsset(getAssets(), "fonts/GOODDP__.TTF");
         Typeface comic_andyFont = Typeface.createFromAsset(getAssets(), "fonts/comic_andy.ttf");
@@ -55,10 +55,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         txtSecondLineLogo.setTypeface(comic_andyFont);
     }
 
-    private void StartSplashScreen() {
+    private void startSplashScreen() {
         LinearLayout secondLogo = (LinearLayout) findViewById(R.id.secondLayout);
         ImageView imgLogo = (ImageView) findViewById(R.id.imvLogo);
-        // Make the objects StartSplashScreen
+        // Make the objects startSplashScreen
         ObjectAnimator anim = ObjectAnimator.ofFloat(imgLogo, "alpha", 0f, 1f);
         anim.setDuration(splashScreenDuration); // time in seconds
         anim.start();
@@ -77,7 +77,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     /* Hide UI action bar and make the app fullscreen */
-    private void MakeFullscreen() {
+    private void makeFullscreen() {
         getSupportActionBar().hide();
         // API 19 (Kit Kat)
         if (Build.VERSION.SDK_INT >= 19) {

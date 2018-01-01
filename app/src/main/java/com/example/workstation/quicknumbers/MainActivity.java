@@ -70,10 +70,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtLevel = (TextView) findViewById(R.id.txtLevel);
 
         // change default font
-        SetCustomFonts();
+        setCustomFonts();
 
         // get the points from sharedPreferences file
-        GetSharedPreferencesData();
+        getSharedPreferencesData();
 
         // display actual number of points
         txtPoints.setText(getString(R.string.points) + " " + Integer.toString(points));
@@ -130,22 +130,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         // start game when activity is active (run first time and every time when back to game)
-        if (!isUserToQuestionActive) StartGame();
+        if (!isUserToQuestionActive) startGame();
     }
 
-    private void StartGame() {
+    private void startGame() {
         // full screen on device
-        MakeFullscreen();
+        makeFullscreen();
         // start countdown with specific amount of time
-        Countdown(miliSecondsLeftTimer);
+        countdown(miliSecondsLeftTimer);
         // draw numbers for calculation
-        NewCalculation(level);
+        newCalculation(level);
         // clear text field where user input the answer
-        ClearTextResult();
+        clearTextResult();
     }
 
     /* Hide UI action bar and make the app fullscreen */
-    private void MakeFullscreen() {
+    private void makeFullscreen() {
         getSupportActionBar().hide();
         // API 19 (Kit Kat)
         if (Build.VERSION.SDK_INT >= 19) {
@@ -162,14 +162,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void SetCustomFonts() {
+    private void setCustomFonts() {
         Typeface comic_andyFont = Typeface.createFromAsset(getAssets(), "fonts/comic_andy.ttf");
         txtPoints.setTypeface(comic_andyFont);
         txtTimer.setTypeface(comic_andyFont);
         txtLevel.setTypeface(comic_andyFont);
     }
 
-    private void GetSharedPreferencesData() {
+    private void getSharedPreferencesData() {
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
         // get the number of points form shared preferences file on device
         if (sharedpreferences.contains(pointsKeySharedPreference)) {
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else points = 0;
     }
 
-    private void NewCalculation(int level) {
+    private void newCalculation(int level) {
         // zero and one variables are beginning number of range
         int zero = 0;
         int one = 1; // because divide by zero is not allowed
@@ -231,10 +231,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.buttonclear:
-                ClearTextResult();
+                clearTextResult();
                 break;
             case R.id.buttonequal:
-                if (!txtAnswer.getText().toString().isEmpty()) CompareResult();
+                if (!txtAnswer.getText().toString().isEmpty()) compareResult();
                 break;
             default:
                 // after click on number button, this method add the number to answer text field
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void CompareResult() {
+    private void compareResult() {
         /* points for calculations are varies
             If level = 1 then points+=level; for adding 1 points, points+=2*level; for subtract 2 points,
             points+=3*level; for multiply 3 points, points+=4*level; for divide 4 points.
@@ -256,64 +256,64 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     // Change this for sound
                     correctSoundMP.start();
                     points += level;
-                    NewCalculation(level);
+                    newCalculation(level);
                 } else {
                     if (points > 0) points--;
                     incorrectSoundMP.start();
                 }
                 // reset textview with users result
-                ClearTextResult();
+                clearTextResult();
                 break;
             case "minus":
                 if (firstNumber - secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
                     // Change this for sound
                     correctSoundMP.start();
                     points += 2 * level;
-                    NewCalculation(level);
+                    newCalculation(level);
                 } else {
                     if (points > 0) points--;
                     incorrectSoundMP.start();
                 }
                 // reset textview with users result
-                ClearTextResult();
+                clearTextResult();
                 break;
             case "multiply":
                 if (firstNumber * secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
                     // Change this for sound
                     correctSoundMP.start();
                     points += 3 * level;
-                    NewCalculation(level);
+                    newCalculation(level);
                 } else {
                     if (points > 0) points--;
                     incorrectSoundMP.start();
                 }
                 // reset textview with users result
-                ClearTextResult();
+                clearTextResult();
                 break;
             case "divide":
                 if (firstNumber / secondNumber == Integer.parseInt(txtAnswer.getText().toString())) {
                     correctSoundMP.start();
                     // more points because divide is the hardest calculation
                     points += 4 * level;
-                    NewCalculation(level);
+                    newCalculation(level);
                 } else {
                     if (points > 0) points--;
                     incorrectSoundMP.start();
                 }
                 // reset textview with users result
-                ClearTextResult();
+                clearTextResult();
                 break;
         }
         txtPoints.setText(getString(R.string.points) + " " + Integer.toString(points));
-        SavePointsInSharedPreferences(points);
+        savePointsInSharedPreferences(points);
     }
 
-    private void ClearTextResult() {
+    private void clearTextResult() {
         txtAnswer.setText("");
     }
 
-    /* Countdown Timer */
-    private void Countdown(int miliSeconds) {
+    /* countdown Timer */
+    private void countdown(int miliSeconds) {
         timerSeconds = new CountDownTimer(miliSeconds, 1000) {
 
             @Override
@@ -360,12 +360,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             .setPositiveButton(R.string.dialog_Yes, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    ClearTextResult();
+                                    clearTextResult();
                                     // set as false because user answer and wants to continue game
                                     isUserToQuestionActive = false;
                                     // display actual number of level
                                     txtLevel.setText(getString(R.string.levels) + " " + Integer.toString(level));
-                                    StartGame();
+                                    startGame();
                                 }
                             })
                             .setNegativeButton(R.string.dialog_No, new DialogInterface.OnClickListener() {
@@ -382,7 +382,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     // save points when game finish
-    private void SavePointsInSharedPreferences(int pointsToSaveInSharedPreferences) {
+    private void savePointsInSharedPreferences(int pointsToSaveInSharedPreferences) {
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putInt(pointsKeySharedPreference, pointsToSaveInSharedPreferences);
         editor.commit();

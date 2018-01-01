@@ -27,9 +27,9 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         txtHome = (TextView) findViewById(R.id.txtHome);
 
         // full screen on device
-        MakeFullscreen();
+        makeFullscreen();
         // change default font
-        SetCustomFonts();
+        setCustomFonts();
 
         /* Buttons */
         ImageButton btnPlus = (ImageButton) findViewById(R.id.btnPlus);
@@ -52,13 +52,13 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         // get the data from sharedPreferences file
-        GetSharedPreferencesData();
+        getSharedPreferencesData();
         // display the actual number of points
         txtPointsNumber.setText(Integer.toString(points));
     }
 
     /* Hide UI action bar and make the app fullscreen */
-    private void MakeFullscreen() {
+    private void makeFullscreen() {
         getSupportActionBar().hide();
         // API 19 (Kit Kat)
         if (Build.VERSION.SDK_INT >= 19) {
@@ -75,14 +75,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void SetCustomFonts() {
+    private void setCustomFonts() {
         Typeface comic_andyFont = Typeface.createFromAsset(getAssets(), "fonts/comic_andy.ttf");
         txtPoints.setTypeface(comic_andyFont);
         txtHome.setTypeface(comic_andyFont);
         txtPointsNumber.setTypeface(comic_andyFont);
     }
 
-    private void GetSharedPreferencesData() {
+    private void getSharedPreferencesData() {
         SharedPreferences sharedpreferences;
         String mypreference = "mypreference";
         String pointsKeySharedPreference = "pointsKey";

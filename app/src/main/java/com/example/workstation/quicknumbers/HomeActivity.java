@@ -13,13 +13,13 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         // full screen on device
-        MakeFullscreen();
+        makeFullscreen();
 
         // load the bought toys array and display those with true value
     }
 
     /* Hide UI action bar and make the app fullscreen */
-    private void MakeFullscreen() {
+    private void makeFullscreen() {
         getSupportActionBar().hide();
         // API 19 (Kit Kat)
         if (Build.VERSION.SDK_INT >= 19) {

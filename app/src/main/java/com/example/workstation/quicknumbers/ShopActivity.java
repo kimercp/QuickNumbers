@@ -1,10 +1,14 @@
 package com.example.workstation.quicknumbers;
 
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 public class ShopActivity extends AppCompatActivity {
 
@@ -13,15 +17,16 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
+        // change the font once in all activity text views
+        overrideFonts(this, findViewById(R.id.ShopItems));
+
         // full screen on device
-        MakeFullscreen();
-        // change default font
-        SetCustomFonts();
+        makeFullscreen();
 
     }
 
     /* Hide UI action bar and make the app fullscreen */
-    private void MakeFullscreen() {
+    private void makeFullscreen() {
         getSupportActionBar().hide();
         // API 19 (Kit Kat)
         if (Build.VERSION.SDK_INT >= 19) {
@@ -38,10 +43,28 @@ public class ShopActivity extends AppCompatActivity {
         }
     }
 
-    private void SetCustomFonts() {
-        //Typeface comic_andyFont = Typeface.createFromAsset(getAssets(), "fonts/comic_andy.ttf");
-//        txtPoints.setTypeface(comic_andyFont);
-//        txtHome.setTypeface(comic_andyFont);
-//        txtPointsNumber.setTypeface(comic_andyFont);
+    public static void overrideFonts(final Context context, final View v) {
+        try {
+            if (v instanceof ViewGroup) {
+                ViewGroup vg = (ViewGroup) v;
+                // take number of children from parent if view group
+                for (int i = 0; i < vg.getChildCount(); i++) {
+                    View child = vg.getChildAt(i);
+                    // run the method again to check the children of actual taken view
+                    overrideFonts(context, child);
+                }
+            }
+            // check if view is not button, do nothing in case of button
+            if (v instanceof Button) {}
+            else if (v instanceof TextView) {
+                ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/comic_andy.ttf"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
+
+
 }
