@@ -14,8 +14,8 @@ public class HomeActivity extends AppCompatActivity {
 
         // full screen on device
         MakeFullscreen();
-        // change default font
-        SetCustomFonts();
+
+        // load the bought toys array and display those with true value
     }
 
     /* Hide UI action bar and make the app fullscreen */
@@ -34,12 +34,5 @@ public class HomeActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             }
         }
-    }
-
-    private void SetCustomFonts() {
-        //Typeface comic_andyFont = Typeface.createFromAsset(getAssets(), "fonts/comic_andy.ttf");
-//        txtPoints.setTypeface(comic_andyFont);
-//        txtHome.setTypeface(comic_andyFont);
-//        txtPointsNumber.setTypeface(comic_andyFont);
     }
 }
