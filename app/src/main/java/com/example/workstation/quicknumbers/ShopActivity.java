@@ -1,6 +1,7 @@
 package com.example.workstation.quicknumbers;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +9,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ShopActivity extends AppCompatActivity {
+
+    // number of user points
+    private int points;
+
+    // shared preferences to get and save points
+    private SharedPreferences sharedpreferences;
+    private String mypreference = "mypreference";
+    // user points are saved in shared preferences
+    private String pointsKeySharedPreference = "pointsKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +34,12 @@ public class ShopActivity extends AppCompatActivity {
 
         // full screen on device
         makeFullscreen();
+
+        // load actual number of user points
+        getSharedPreferencesData();
+
+        // display toys only available to buy, if the user have enough points to buy a toy
+        setToysNotAvailableToBuyAsNotActive((ViewGroup) findViewById(R.id.ShopItems));
 
     }
 
@@ -64,7 +82,34 @@ public class ShopActivity extends AppCompatActivity {
         }
     }
 
+    public void setToysNotAvailableToBuyAsNotActive(final ViewGroup vg){
+        // loop to check every child in ShopItems component
+        for (int i=0; i < vg.getChildCount(); i++ ) {
+            // set net view group, because linear layout has 4 children
+            ViewGroup v = (ViewGroup) vg.getChildAt(i);
+            // the view with number of points needed to buy a toy (price for a toy)
+            View vToyPrice = v.getChildAt(2);
+            // casting view on TextView
+            TextView tvToyPrice = (TextView) vToyPrice;
+            Integer toyPrice = Integer.parseInt(tvToyPrice.getText().toString());
+            if (toyPrice > points) v.getChildAt(3).setVisibility(View.INVISIBLE);
+        }
+    }
+    
+    // 1. wez nazwe obrazka, usun tekst, od cyfry odjac 1 i zapisz do array jako true
 
+    private void getSharedPreferencesData() {
+        sharedpreferences = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
+        // get the number of points form shared preferences file on device
+        if (sharedpreferences.contains(pointsKeySharedPreference)) {
+            points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
+        } else points = 0;
+    }
 
-
+    // save points when game finish
+    private void savePointsInSharedPreferences(int pointsToSaveInSharedPreferences) {
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.putInt(pointsKeySharedPreference, pointsToSaveInSharedPreferences);
+        editor.commit();
+    }
 }

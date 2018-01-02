@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // operator from previous activity chosen by user, it says what type of math operation has been chosen
     private String operator = "";
+
     private SharedPreferences sharedpreferences;
     private String mypreference = "mypreference";
 
