@@ -17,4 +17,5 @@
     <string name="improveyourskill">Improve your skill</string>
     <string name="youHave">You have </string>
     <string name="pointsWord"> points.</string>
+    <string name="buyToy">You have bought a toy and spend </string>
 </resources>

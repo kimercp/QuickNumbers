@@ -78,11 +78,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="0"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -127,11 +129,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="1"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -176,11 +180,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="2"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -225,11 +231,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="3"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -274,11 +282,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="4"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -323,11 +333,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="5"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -372,11 +384,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="6"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -421,11 +435,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="7"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -470,11 +486,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="8"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -519,11 +537,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="9"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -568,11 +588,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="10"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -617,11 +639,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="11"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -666,11 +690,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="12"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -715,11 +741,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="13"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -764,11 +792,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="14"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -813,11 +843,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="15"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -862,11 +894,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="16"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -911,11 +945,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy17"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="17"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -960,11 +996,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="18"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1009,11 +1047,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy19"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="19"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1058,11 +1098,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="20"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1107,11 +1149,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="21"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1156,11 +1200,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="22"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1205,11 +1251,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="23"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1254,11 +1302,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="24"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1303,11 +1353,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy25"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="25"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1352,11 +1404,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy26"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="26"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1401,11 +1455,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy27"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="27"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1450,11 +1506,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy28"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="28"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1499,11 +1557,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy29"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="29"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1548,11 +1608,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy30"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="30"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1597,11 +1659,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy31"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="31"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1646,11 +1710,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="32"
                         android:text="Buy" />
                 </FrameLayout>
 
@@ -1695,11 +1761,13 @@
                     android:layout_weight="1">
 
                     <Button
+                        android:id="@+id/btnToy33"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/button"
                         android:gravity="center"
+                        android:tag="33"
                         android:text="Buy" />
                 </FrameLayout>
 
