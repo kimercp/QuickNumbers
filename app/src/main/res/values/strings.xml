@@ -18,4 +18,5 @@
     <string name="youHave">You have </string>
     <string name="pointsWord"> points.</string>
     <string name="buyToy">You have bought a toy and spend </string>
+    <string name="confirm_buy">Do You want to buy this toy?</string>
 </resources>
