@@ -9,31 +9,31 @@ import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private String operator = "";
+    // number of points
+    private Integer points;
 
+    // variables to use shared preferences
     private SharedPreferences sharedpreferences;
     private String mypreference = "mypreference";
-
     // user points are saved in shared preferences
     private String pointsKeySharedPreference = "pointsKey";
 
-    private Integer points;
-
     // array with toys status, true is bought
     private boolean[] toysArray;
-    private Integer arrayToyPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // array of toys true if bought false if not bought
+        toysArray = new boolean[34];
+
         // full screen on device
         makeFullscreen();
 
         // load the bought toys array and display those with true value
         getSharedPreferencesData();
-
     }
 
     /* Hide UI action bar and make the app fullscreen */
@@ -56,13 +56,12 @@ public class HomeActivity extends AppCompatActivity {
 
     private void getSharedPreferencesData() {
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
-        // get the number of points form shared preferences file on device
-        if (sharedpreferences.contains(pointsKeySharedPreference)) {
-            points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
-        } else points = 0;
+        // get the number of points form shared preferences file on device if not exist then return 0
+        points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
+
+        // load data to toys array if not exist return false
         for (int positionInToysArray = 0; positionInToysArray < toysArray.length; positionInToysArray++) {
             toysArray[positionInToysArray] = sharedpreferences.getBoolean(Integer.toString(positionInToysArray), false);
-            Toast.makeText(this, Boolean.toString(toysArray[positionInToysArray]), Toast.LENGTH_SHORT).show();
         }
     }
 }

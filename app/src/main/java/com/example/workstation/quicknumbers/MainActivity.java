@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // operator from previous activity chosen by user, it says what type of math operation has been chosen
     private String operator = "";
 
+    // variables to use shared preferences
     private SharedPreferences sharedpreferences;
     private String mypreference = "mypreference";
-
     // user points are saved in shared preferences
     private String pointsKeySharedPreference = "pointsKey";
 
@@ -173,9 +173,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void getSharedPreferencesData() {
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
         // get the number of points form shared preferences file on device
-        if (sharedpreferences.contains(pointsKeySharedPreference)) {
-            points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
-        } else points = 0;
+        points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
     }
 
     private void newCalculation(int level) {

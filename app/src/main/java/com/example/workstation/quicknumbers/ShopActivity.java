@@ -24,7 +24,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
     // number of user points
     private int points;
 
-    // shared preferences to get and save points
+    // variables to use shared preferences
     private SharedPreferences sharedpreferences;
     private String mypreference = "mypreference";
     // user points are saved in shared preferences
@@ -174,9 +174,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
     private void getSharedPreferencesData() {
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
         // get the number of points form shared preferences file on device
-        if (sharedpreferences.contains(pointsKeySharedPreference)) {
-            points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
-        } else points = 0;
+        points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
     }
 
     /* display toys only available to buy, if the user have enough points to buy a toy */
