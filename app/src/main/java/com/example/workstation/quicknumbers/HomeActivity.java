@@ -5,6 +5,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
@@ -34,6 +35,9 @@ public class HomeActivity extends AppCompatActivity {
 
         // load the bought toys array and display those with true value
         getSharedPreferencesData();
+
+        // draw bought toys, check array, true means bought, false replace image with red cross
+        drawToysInHome();
     }
 
     /* Hide UI action bar and make the app fullscreen */
@@ -62,6 +66,29 @@ public class HomeActivity extends AppCompatActivity {
         // load data to toys array if not exist return false
         for (int positionInToysArray = 0; positionInToysArray < toysArray.length; positionInToysArray++) {
             toysArray[positionInToysArray] = sharedpreferences.getBoolean(Integer.toString(positionInToysArray), false);
+        }
+    }
+
+    private void drawToysInHome() {
+        ViewGroup homeItemsToysViewGroup = (ViewGroup) findViewById(R.id.HomeItems);
+        // loop to check if toy has been already bought and saved in array as true value
+        for (int positionInToysArray = 0; positionInToysArray < toysArray.length; positionInToysArray++) {
+            // check if array has false value and replace the toy's image
+            if (toysArray[positionInToysArray] == false) {
+                // check every child in home items group
+                for (int i = 0; i < homeItemsToysViewGroup.getChildCount(); i++) {
+                    ViewGroup toyLineViewGroup = (ViewGroup) homeItemsToysViewGroup.getChildAt(i);
+                    // check every child's tag if equal with array's position
+                    // If Yes replace the image on red cross, otherwise leave original image
+                    for (int k = 0; k < toyLineViewGroup.getChildCount(); k++) {
+                        View specificToyView = toyLineViewGroup.getChildAt(k);
+                        String toyTag = specificToyView.getTag().toString();
+                        String positionArray = Integer.toString(positionInToysArray);
+                        if (positionArray.equals(toyTag))
+                            specificToyView.setVisibility(View.INVISIBLE);
+                    }
+                }
+            }
         }
     }
 }

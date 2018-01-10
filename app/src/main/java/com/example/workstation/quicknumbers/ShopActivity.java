@@ -42,6 +42,9 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
+        // array of toys true if bought false if not bought
+        toysArray = new boolean[34];
+
         // full screen on device
         makeFullscreen();
         
@@ -124,10 +127,6 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         toy31.setOnClickListener(this);
         toy32.setOnClickListener(this);
         toy33.setOnClickListener(this);
-
-        // array of toys true if bought false if not bought
-        toysArray = new boolean[34];
-
     }
 
     /* Hide UI action bar and make the app fullscreen */
@@ -175,12 +174,17 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
         // get the number of points form shared preferences file on device
         points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
+
+        // load data to toys array if not exist return false
+        for (int positionInToysArray = 0; positionInToysArray < toysArray.length; positionInToysArray++) {
+            toysArray[positionInToysArray] = sharedpreferences.getBoolean(Integer.toString(positionInToysArray), false);
+        }
     }
 
     /* display toys only available to buy, if the user have enough points to buy a toy */
-    public void setToysNotAvailableToBuyAsNotActive(final ViewGroup vg){
+    public void setToysNotAvailableToBuyAsNotActive(final ViewGroup vg) {
         // loop to check every child in ShopItems component
-        for (int i=0; i < vg.getChildCount(); i++ ) {
+        for (int i = 0; i < vg.getChildCount(); i++) {
             // set net view group, because linear layout has 4 children
             ViewGroup v = (ViewGroup) vg.getChildAt(i);
             // the view with number of points needed to buy a toy (price for a toy)
@@ -191,6 +195,22 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
             Integer toyPrice = Integer.parseInt(tvToyPrice.getText().toString());
             // if less hide BUY button
             if (toyPrice > points) v.getChildAt(3).setVisibility(View.INVISIBLE);
+        }
+
+        // loop to check if toy has been already bought
+        ViewGroup shopItemsVG = (ViewGroup) findViewById(R.id.ShopItems);
+        for (int i = 0; i < toysArray.length; i++) {
+            if (toysArray[i] == true) {
+                ViewGroup linearLayoutVG = (ViewGroup) shopItemsVG.getChildAt(i);
+                View specificToyView = linearLayoutVG.getChildAt(1);
+                specificToyView.setVisibility(View.INVISIBLE);
+
+//                for (int j = 0; j < 34; j++) {
+//                    if (Integer.parseInt(specificToyView.getTag().toString()) == i) {
+//                        specificToyView.setVisibility(View.INVISIBLE);
+//                    }
+//                }
+            }
         }
     }
 

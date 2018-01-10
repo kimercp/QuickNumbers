@@ -33,6 +33,7 @@
         android:layout_weight="8">
 
         <LinearLayout
+            android:id="@+id/HomeItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -40,6 +41,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -49,6 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="0"
                     app:srcCompat="@drawable/toy1" />
 
                 <ImageView
@@ -57,21 +61,24 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="1"
                     app:srcCompat="@drawable/toy2" />
 
                 <ImageView
                     android:id="@+id/imageView33"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="2"
                     app:srcCompat="@drawable/toy3" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -81,6 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="3"
                     app:srcCompat="@drawable/toy4" />
 
                 <ImageView
@@ -90,6 +98,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:clickable="true"
+                    android:tag="4"
                     app:srcCompat="@drawable/toy5" />
 
                 <ImageView
@@ -98,12 +107,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="5"
                     app:srcCompat="@drawable/toy6" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -113,6 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="6"
                     app:srcCompat="@drawable/toy7" />
 
                 <ImageView
@@ -121,6 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="7"
                     android:visibility="visible"
                     app:srcCompat="@drawable/toy8" />
 
@@ -130,12 +144,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="8"
                     app:srcCompat="@drawable/toy9" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -145,6 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="9"
                     app:srcCompat="@drawable/toy10" />
 
                 <ImageView
@@ -153,6 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="10"
                     app:srcCompat="@drawable/toy11" />
 
                 <ImageView
@@ -161,12 +180,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="11"
                     app:srcCompat="@drawable/toy12" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -176,6 +198,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="12"
                     app:srcCompat="@drawable/toy13" />
 
                 <ImageView
@@ -184,6 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="13"
                     android:visibility="visible"
                     app:srcCompat="@drawable/toy14" />
 
@@ -193,12 +217,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="14"
                     app:srcCompat="@drawable/toy15" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -208,6 +235,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="15"
                     app:srcCompat="@drawable/toy16" />
 
                 <ImageView
@@ -216,6 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="16"
                     app:srcCompat="@drawable/toy17" />
 
                 <ImageView
@@ -224,12 +253,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="17"
                     app:srcCompat="@drawable/toy18" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -239,6 +271,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="18"
                     app:srcCompat="@drawable/toy19" />
 
                 <ImageView
@@ -247,21 +280,24 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="19"
                     app:srcCompat="@drawable/toy20" />
 
                 <ImageView
                     android:id="@+id/imageView101"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="20"
                     app:srcCompat="@drawable/toy21" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -271,6 +307,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="21"
                     app:srcCompat="@drawable/toy22" />
 
                 <ImageView
@@ -279,6 +316,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="22"
                     app:srcCompat="@drawable/toy23" />
 
                 <ImageView
@@ -287,12 +325,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="23"
                     app:srcCompat="@drawable/toy24" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -302,6 +343,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="24"
                     app:srcCompat="@drawable/toy25" />
 
                 <ImageView
@@ -310,6 +352,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="25"
                     app:srcCompat="@drawable/toy26" />
 
                 <ImageView
@@ -318,12 +361,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="26"
                     app:srcCompat="@drawable/toy27" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -332,6 +378,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="27"
                     app:srcCompat="@drawable/toy28" />
 
                 <ImageView
@@ -340,6 +387,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="28"
                     app:srcCompat="@drawable/toy29" />
 
                 <ImageView
@@ -348,6 +396,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="29"
                     app:srcCompat="@drawable/toy30" />
 
             </LinearLayout>
@@ -355,6 +404,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -364,6 +415,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="30"
                     app:srcCompat="@drawable/toy31" />
 
                 <ImageView
@@ -372,6 +424,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="31"
                     app:srcCompat="@drawable/toy32" />
 
                 <ImageView
@@ -380,12 +433,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="32"
                     app:srcCompat="@drawable/toy33" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -395,9 +451,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:tag="33"
                     app:srcCompat="@drawable/toy34" />
-
             </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>
