@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -113,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button9.setOnClickListener(this);
         buttonClear.setOnClickListener(this);
         buttonEqual.setOnClickListener(this);
+
+        ImageButton btnExit = (ImageButton) findViewById(R.id.imgbExit);
+        btnExit.setOnClickListener(this);
 
         // sounds when user give good or wrong answer
         correctSoundMP = MediaPlayer.create(this, R.raw.correct_sound);
@@ -234,6 +238,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.buttonequal:
                 if (!txtAnswer.getText().toString().isEmpty()) compareResult();
+                break;
+            case R.id.imgbBack:
+                
+                new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle)
+                        .setTitle(R.string.confirm_back)
+                        .setIcon(R.drawable.back)
+                        .setPositiveButton(R.string.dialog_Yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                clearTextResult();
+                                // set as false because user answer and wants to continue game
+                                isUserToQuestionActive = true;
+                                // when  the user leaving  activity cancel the timer
+                                timerSeconds.cancel();
+                                finish();
+                            }
+                        })
+                        .setNegativeButton(R.string.dialog_No, null)
+                        .setCancelable(false)
+                        .show();
                 break;
             default:
                 // after click on number button, this method add the number to answer text field

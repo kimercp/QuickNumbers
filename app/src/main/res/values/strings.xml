@@ -19,4 +19,5 @@
     <string name="pointsWord"> points.</string>
     <string name="buyToy">You have bought a toy and spend </string>
     <string name="confirm_buy">Do You want to buy this toy?</string>
+    <string name="confirm_back">Are You sure You want to back to previous form?</string>
 </resources>

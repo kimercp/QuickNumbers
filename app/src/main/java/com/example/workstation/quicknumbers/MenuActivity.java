@@ -1,9 +1,11 @@
 package com.example.workstation.quicknumbers;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +40,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         ImageButton btnDivide = (ImageButton) findViewById(R.id.btnDivide);
         ImageButton btnHome = (ImageButton) findViewById(R.id.btnHome);
         ImageButton btnShop = (ImageButton) findViewById(R.id.btnShop);
+        ImageButton btnExit = (ImageButton) findViewById(R.id.imgbExit);
 
         /* Set OnClickListener for each button */
         btnPlus.setOnClickListener(this);
@@ -46,6 +49,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         btnDivide.setOnClickListener(this);
         btnHome.setOnClickListener(this);
         btnShop.setOnClickListener(this);
+        btnExit.setOnClickListener(this);
     }
 
     @Override
@@ -150,6 +154,19 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtras(bundle);
 
                 startActivity(intent);
+                break;
+            case R.id.imgbExit:
+                new AlertDialog.Builder(this, R.style.AlertDialogStyle)
+                        .setTitle(R.string.dialog_confirmExit)
+                        .setIcon(R.drawable.exit)
+                        .setNegativeButton(R.string.dialog_No, null)
+                        .setPositiveButton(R.string.dialog_Yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                            }
+                        })
+                        .show();
                 break;
         }
     }
