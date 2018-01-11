@@ -52,8 +52,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:tag="0"
-                    app:srcCompat="@drawable/toy1" />
+                    android:src="@drawable/toy1"
+                    android:tag="0" />
 
                 <ImageView
                     android:id="@+id/imageView68"
@@ -70,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
+                    android:adjustViewBounds="false"
                     android:tag="2"
                     app:srcCompat="@drawable/toy3" />
             </LinearLayout>
@@ -97,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:clickable="true"
+                    android:clickable="false"
                     android:tag="4"
                     app:srcCompat="@drawable/toy5" />
 
@@ -433,8 +434,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:tag="32"
-                    app:srcCompat="@drawable/toy33" />
+                    app:srcCompat="@drawable/toy33"
+                    android:tag="32" />
             </LinearLayout>
 
             <LinearLayout

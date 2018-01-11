@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // variables to use shared preferences
     private SharedPreferences sharedpreferences;
-    private String mypreference = "mypreference";
     // user points are saved in shared preferences
     private String pointsKeySharedPreference = "pointsKey";
 
@@ -171,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getSharedPreferencesData() {
+        String mypreference = "mypreference";
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
         // get the number of points form shared preferences file on device
         points = sharedpreferences.getInt(pointsKeySharedPreference, 0);

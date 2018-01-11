@@ -6,18 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 public class HomeActivity extends AppCompatActivity {
 
     // number of points
     private Integer points;
-
-    // variables to use shared preferences
-    private SharedPreferences sharedpreferences;
-    private String mypreference = "mypreference";
-    // user points are saved in shared preferences
-    private String pointsKeySharedPreference = "pointsKey";
 
     // array with toys status, true is bought
     private boolean[] toysArray;
@@ -59,6 +53,12 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void getSharedPreferencesData() {
+        // variables to use shared preferences
+        SharedPreferences sharedpreferences;
+        String mypreference = "mypreference";
+        // user points are saved in shared preferences
+        String pointsKeySharedPreference = "pointsKey";
+
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
         // get the number of points form shared preferences file on device if not exist then return 0
         points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
@@ -84,8 +84,11 @@ public class HomeActivity extends AppCompatActivity {
                         View specificToyView = toyLineViewGroup.getChildAt(k);
                         String toyTag = specificToyView.getTag().toString();
                         String positionArray = Integer.toString(positionInToysArray);
-                        if (positionArray.equals(toyTag))
-                            specificToyView.setVisibility(View.INVISIBLE);
+                        if (positionArray.equals(toyTag)){
+                            // casting view in purpose to replace image src
+                            ImageView imageOfToy = (ImageView) specificToyView;
+                            imageOfToy.setImageResource(R.drawable.cross);
+                        }
                     }
                 }
             }

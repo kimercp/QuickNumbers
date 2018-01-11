@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
-import android.graphics.drawable.Icon;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
@@ -17,8 +16,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
-
 public class ShopActivity extends AppCompatActivity implements View.OnClickListener {
 
     // number of user points
@@ -26,7 +23,6 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
 
     // variables to use shared preferences
     private SharedPreferences sharedpreferences;
-    private String mypreference = "mypreference";
     // user points are saved in shared preferences
     private String pointsKeySharedPreference = "pointsKey";
 
@@ -171,6 +167,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
 
     /* get actual number of user points from shared preferences saved on android device */
     private void getSharedPreferencesData() {
+        String mypreference = "mypreference";
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
         // get the number of points form shared preferences file on device
         points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
@@ -198,18 +195,13 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         // loop to check if toy has been already bought
-        ViewGroup shopItemsVG = (ViewGroup) findViewById(R.id.ShopItems);
+        ViewGroup shopItemsViewGroup = (ViewGroup) findViewById(R.id.ShopItems);
         for (int i = 0; i < toysArray.length; i++) {
             if (toysArray[i] == true) {
-                ViewGroup linearLayoutVG = (ViewGroup) shopItemsVG.getChildAt(i);
-                View specificToyView = linearLayoutVG.getChildAt(1);
+                ViewGroup linearLayoutVG = (ViewGroup) shopItemsViewGroup.getChildAt(i);
+                View specificToyView = linearLayoutVG.getChildAt(3);
+                // hide buy button
                 specificToyView.setVisibility(View.INVISIBLE);
-
-//                for (int j = 0; j < 34; j++) {
-//                    if (Integer.parseInt(specificToyView.getTag().toString()) == i) {
-//                        specificToyView.setVisibility(View.INVISIBLE);
-//                    }
-//                }
             }
         }
     }

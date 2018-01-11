@@ -17,22 +17,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     private TextView txtHome;
     private int points;
 
-    // variables to use shared preferences
-    private SharedPreferences sharedpreferences;
-    private String mypreference = "mypreference";
-    // user points are saved in shared preferences
-    private String pointsKeySharedPreference = "pointsKey";
-
-    // array with toys status, true is bought
-    private boolean[] toysArray;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-        // array of toys true if bought false if not bought
-        toysArray = new boolean[34];
 
         txtPoints = (TextView) findViewById(R.id.txtPoints);
         txtPointsNumber = (TextView) findViewById(R.id.txtPointsNumber);
@@ -95,6 +83,12 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void getSharedPreferencesData() {
+        // variables to use shared preferences
+        SharedPreferences sharedpreferences;
+        String mypreference = "mypreference";
+        // user points are saved in shared preferences
+        String pointsKeySharedPreference = "pointsKey";
+
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
         // get the number of points form shared preferences file on device if not exist then return 0
         points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
