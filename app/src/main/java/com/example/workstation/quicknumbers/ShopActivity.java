@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +44,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
 
         // full screen on device
         makeFullscreen();
-        
+
         // change the font once in all activity text views
         overrideFonts(this, findViewById(R.id.ShopItems));
 
@@ -52,7 +53,10 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
 
         // display toys only available to buy, if the user have enough points to buy a toy
         setToysNotAvailableToBuyAsNotActive((ViewGroup) findViewById(R.id.ShopItems));
-        
+
+        ImageButton btnBack = (ImageButton) findViewById(R.id.imgbBack);
+        btnBack.setOnClickListener(this);
+
         /* Buttons */
         Button toy0 = (Button) findViewById(R.id.btnToy0);
         Button toy1 = (Button) findViewById(R.id.btnToy1);
@@ -156,8 +160,8 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
             // check if view is not button, do nothing in case of button
-            if (v instanceof Button) {}
-            else if (v instanceof TextView) {
+            if (v instanceof Button) {
+            } else if (v instanceof TextView) {
                 ((TextView) v).setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/comic_andy.ttf"));
             }
         } catch (Exception e) {
@@ -208,51 +212,58 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View viewButton) {
-        // find parent of button passed as an argument which is FrameLayout
-        View parentOfButton = (View) viewButton.getParent();
-        // find parent of frame layout which is LinearLayout
-        ViewGroup firstParent = (ViewGroup) parentOfButton.getParent();
-        // get first child which is ImageView with image of the toys
-        ImageView imageOfToy = (ImageView) firstParent.getChildAt(0);
-        // get third child which is text view with price of toy in points
-        TextView textPrice = (TextView) firstParent.getChildAt(2);
-        toyTextPrice = Integer.parseInt(textPrice.getText().toString());
+        switch (viewButton.getId()) {
+            case R.id.imgbBack:
+                finish();
+                break;
+            default:
+                // find parent of button passed as an argument which is FrameLayout
+                View parentOfButton = (View) viewButton.getParent();
+                // find parent of frame layout which is LinearLayout
+                ViewGroup firstParent = (ViewGroup) parentOfButton.getParent();
+                // get first child which is ImageView with image of the toys
+                ImageView imageOfToy = (ImageView) firstParent.getChildAt(0);
+                // get third child which is text view with price of toy in points
+                TextView textPrice = (TextView) firstParent.getChildAt(2);
+                toyTextPrice = Integer.parseInt(textPrice.getText().toString());
 
-        // get button tag
-        Button btn = (Button) findViewById(viewButton.getId());
-        String btnTag = (String) btn.getTag();
-        arrayToyPosition = Integer.parseInt(btnTag);
+                // get button tag
+                Button btn = (Button) findViewById(viewButton.getId());
+                String btnTag = (String) btn.getTag();
+                arrayToyPosition = Integer.parseInt(btnTag);
 
-        // ask to confirm desire to buy a toy
-        new AlertDialog.Builder(this, R.style.AlertDialogStyle)
-                .setTitle(R.string.confirm_buy)
-                .setCancelable(false)
-                // the image of toy used to display as icon in dialog with user to confirm desire to buy it
-                .setIcon(imageOfToy.getDrawable())
-                .setPositiveButton(R.string.dialog_Yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        MediaPlayer boughtSoundMP;
-                        // sounds when user bought a toy
-                        boughtSoundMP = MediaPlayer.create(ShopActivity.this, R.raw.cash_register_sound);
-                        boughtSoundMP.start();
+                // ask to confirm desire to buy a toy
+                new AlertDialog.Builder(this, R.style.AlertDialogStyle)
+                        .setTitle(R.string.confirm_buy)
+                        .setCancelable(false)
+                        // the image of toy used to display as icon in dialog with user to confirm desire to buy it
+                        .setIcon(imageOfToy.getDrawable())
+                        .setPositiveButton(R.string.dialog_Yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                MediaPlayer boughtSoundMP;
+                                // sounds when user bought a toy
+                                boughtSoundMP = MediaPlayer.create(ShopActivity.this, R.raw.cash_register_sound);
+                                boughtSoundMP.start();
 
-                        // set specific toy as true, when toy has been purchased
-                        toysArray[arrayToyPosition] = true;
-                        // subtract points
-                        points = points - toyTextPrice;
+                                // set specific toy as true, when toy has been purchased
+                                toysArray[arrayToyPosition] = true;
+                                // subtract points
+                                points = points - toyTextPrice;
 
-                        // update shared preferences
-                        savePointsInSharedPreferences(points);
+                                // update shared preferences
+                                savePointsInSharedPreferences(points);
 
-                        // refresh the shop list
-                        setToysNotAvailableToBuyAsNotActive((ViewGroup) findViewById(R.id.ShopItems));
+                                // refresh the shop list
+                                setToysNotAvailableToBuyAsNotActive((ViewGroup) findViewById(R.id.ShopItems));
 
-                        Toast.makeText(ShopActivity.this, getString(R.string.buyToy)+Integer.toString(toyTextPrice)+getString(R.string.pointsWord), Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton(R.string.dialog_No,null) // do nothing if "NO"
-                .show();
+                                Toast.makeText(ShopActivity.this, getString(R.string.buyToy) + Integer.toString(toyTextPrice) + getString(R.string.pointsWord), Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton(R.string.dialog_No, null) // do nothing if "NO"
+                        .show();
+                break;
+        }
     }
 
     /* update points and list with bought toys */
@@ -260,8 +271,8 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences.Editor editor = sharedpreferences.edit();
         editor.putInt(pointsKeySharedPreference, pointsToSaveInSharedPreferences);
 
-        for (int positionInToysArray=0; positionInToysArray < toysArray.length; positionInToysArray++){
-            editor.putBoolean(Integer.toString(positionInToysArray),toysArray[positionInToysArray]);
+        for (int positionInToysArray = 0; positionInToysArray < toysArray.length; positionInToysArray++) {
+            editor.putBoolean(Integer.toString(positionInToysArray), toysArray[positionInToysArray]);
         }
         editor.commit();
     }

@@ -6,12 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
-public class HomeActivity extends AppCompatActivity {
-
-    // number of points
-    private Integer points;
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     // array with toys status, true is bought
     private boolean[] toysArray;
@@ -20,6 +18,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        ImageButton btnBack = (ImageButton) findViewById(R.id.imgbBack);
+        btnBack.setOnClickListener(this);
 
         // array of toys true if bought false if not bought
         toysArray = new boolean[34];
@@ -56,13 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         // variables to use shared preferences
         SharedPreferences sharedpreferences;
         String mypreference = "mypreference";
-        // user points are saved in shared preferences
-        String pointsKeySharedPreference = "pointsKey";
-
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference, MODE_PRIVATE); // 0 - for private mode
-        // get the number of points form shared preferences file on device if not exist then return 0
-        points = sharedpreferences.getInt(pointsKeySharedPreference, 0);
-
         // load data to toys array if not exist return false
         for (int positionInToysArray = 0; positionInToysArray < toysArray.length; positionInToysArray++) {
             toysArray[positionInToysArray] = sharedpreferences.getBoolean(Integer.toString(positionInToysArray), false);
@@ -84,7 +79,7 @@ public class HomeActivity extends AppCompatActivity {
                         View specificToyView = toyLineViewGroup.getChildAt(k);
                         String toyTag = specificToyView.getTag().toString();
                         String positionArray = Integer.toString(positionInToysArray);
-                        if (positionArray.equals(toyTag)){
+                        if (positionArray.equals(toyTag)) {
                             // casting view in purpose to replace image src
                             ImageView imageOfToy = (ImageView) specificToyView;
                             imageOfToy.setImageResource(R.drawable.cross);
@@ -92,6 +87,15 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
             }
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.imgbBack:
+                finish();
+                break;
         }
     }
 }

@@ -18,7 +18,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     // constants
-    private final int timeToCountdown = 30000; // in miliseconds (to achieve seconds divide by 1000)
+    private final int timeToCountdown = 10000; // in miliseconds (to achieve seconds divide by 1000)
     private final int maxLevel = 10;
 
     // variables
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private MediaPlayer correctSoundMP;
     private MediaPlayer incorrectSoundMP;
+    private MediaPlayer buttonSoundMP;
 
     // first random generated number displayed to user
     private int firstNumber;
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button button9 = (Button) findViewById(R.id.button9);
         Button buttonClear = (Button) findViewById(R.id.buttonclear);
         Button buttonEqual = (Button) findViewById(R.id.buttonequal);
+        ImageButton btnBack = (ImageButton) findViewById(R.id.imgbBack);
         /* Set OnClickListener for each button */
         button0.setOnClickListener(this);
         button1.setOnClickListener(this);
@@ -114,13 +116,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button9.setOnClickListener(this);
         buttonClear.setOnClickListener(this);
         buttonEqual.setOnClickListener(this);
-
-        ImageButton btnExit = (ImageButton) findViewById(R.id.imgbExit);
-        btnExit.setOnClickListener(this);
+        btnBack.setOnClickListener(this);
 
         // sounds when user give good or wrong answer
         correctSoundMP = MediaPlayer.create(this, R.raw.correct_sound);
         incorrectSoundMP = MediaPlayer.create(this, R.raw.incorrect_sound);
+        buttonSoundMP = MediaPlayer.create(this, R.raw.button_sound);
     }
 
     @Override
@@ -202,8 +203,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case "multiply":
                 // draw random numbers for calculation
-                firstNumber = drawNumber(zero, level);
-                secondNumber = drawNumber(one, level);
+                do {
+                    // check if a multiply result is in range 0 - 10*level
+                    // example for level 3, the range is 0 - 3
+                    firstNumber = (int) (Math.random() * 10);
+                    secondNumber = (int) (Math.random() * 10 + 1);
+                    // random new digits until multiply result is less than level*10
+                } while (firstNumber * secondNumber > level * 10);
                 txtQuestion.setText(firstNumber + " * " + secondNumber + " = ");
                 break;
             case "divide":
@@ -222,25 +228,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // with every level the range of random numbers increase by 10
         // (int)(Math.random() * ((upperbound - lowerbound) + 1) + lowerbound);
         // (where lowerbound is inclusive and upperbound exclusive).
-        int temporary = (int) (Math.random() * ((upperbound - lowerbound) +1) + lowerbound);
+        int temporary = (int) (Math.random() * ((upperbound - lowerbound) + 1) + lowerbound);
         // add 1 because draw number 0 is not desired (can't divide by zero)
         return temporary;
     }
 
     @Override
     public void onClick(View v) {
-        Button btn = (Button) findViewById(v.getId());
-        String text = btn.getText().toString();
+        String text = "";
+        if (v instanceof Button) {
+            Button btn = (Button) findViewById(v.getId());
+            text = btn.getText().toString();
+        }
 
         switch (v.getId()) {
             case R.id.buttonclear:
                 clearTextResult();
+                buttonSoundMP.start();
                 break;
             case R.id.buttonequal:
                 if (!txtAnswer.getText().toString().isEmpty()) compareResult();
                 break;
             case R.id.imgbBack:
-                
                 new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogStyle)
                         .setTitle(R.string.confirm_back)
                         .setIcon(R.drawable.back)
@@ -262,7 +271,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 // after click on number button, this method add the number to answer text field
                 String currentText = txtAnswer.getText().toString();
-                if (currentText.length() < 4) txtAnswer.setText(currentText + text);
+                if (currentText.length() < 4){
+                    buttonSoundMP.start();
+                    txtAnswer.setText(currentText + text); // ((Button) v).getText().toString();
+                }
                 break;
         }
     }
@@ -281,7 +293,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     points += level;
                     newCalculation(level);
                 } else {
-                    if (points > 0) points--;
+                    if (points > 0) {
+                        if (level > 1)
+                        points -= level / 2;
+                        else points--;
+                    }
                     incorrectSoundMP.start();
                 }
                 // reset textview with users result
@@ -294,7 +310,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     points += 2 * level;
                     newCalculation(level);
                 } else {
-                    if (points > 0) points--;
+                    if (points > 0) {
+                        if (level > 1)
+                            points -= 2 * level / 2;
+                        else points--;
+                    }
                     incorrectSoundMP.start();
                 }
                 // reset textview with users result
@@ -307,7 +327,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     points += 3 * level;
                     newCalculation(level);
                 } else {
-                    if (points > 0) points--;
+                    if (points > 0) {
+                        if (level > 1)
+                            points -= 3 * level / 2;
+                        else points--;
+                    }
                     incorrectSoundMP.start();
                 }
                 // reset textview with users result
@@ -320,7 +344,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     points += 4 * level;
                     newCalculation(level);
                 } else {
-                    if (points > 0) points--;
+                    if (points > 0) {
+                        if (level > 1)
+                            points -= 4 * level / 2;
+                        else points--;
+                    }
                     incorrectSoundMP.start();
                 }
                 // reset textview with users result
@@ -346,9 +374,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // add " 0" as text to text field if remaining seconds are less than 10
                 if (millisUntilFinished < 10000)
                     // divide by 1000 to display number of seconds
-                    txtTimer.setText(getString(R.string.timer) + " 0" + millisUntilFinished /1000);
+                    txtTimer.setText(getString(R.string.timer) + " 0" + millisUntilFinished / 1000);
                 else
-                    txtTimer.setText(getString(R.string.timer) + " " + millisUntilFinished /1000);
+                    txtTimer.setText(getString(R.string.timer) + " " + millisUntilFinished / 1000);
             }
 
             @Override
