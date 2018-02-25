@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context="com.example.workstation.quicknumbers.ShopActivity">
+    tools:context="com.kimersoft.workstation.quicknumbers.ShopActivity">
 
     <LinearLayout
         android:id="@+id/GameTopTitle"
@@ -1792,8 +1792,9 @@
                 </FrameLayout>
 
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 
 </LinearLayout>
+
+

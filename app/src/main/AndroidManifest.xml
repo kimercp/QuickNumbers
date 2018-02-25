@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.workstation.quicknumbers">
+    package="com.kimersoft.workstation.quicknumbers">
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".SplashScreenActivity"
+            android:name="com.kimersoft.workstation.quicknumbers.SplashScreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,19 +21,19 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.kimersoft.workstation.quicknumbers.MainActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".MenuActivity"
+            android:name="com.kimersoft.workstation.quicknumbers.MenuActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".HomeActivity"
+            android:name="com.kimersoft.workstation.quicknumbers.HomeActivity"
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ShopActivity"
+            android:name="com.kimersoft.workstation.quicknumbers.ShopActivity"
             android:screenOrientation="portrait" />
 
     </application>

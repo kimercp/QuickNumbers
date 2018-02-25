@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#000000"
     android:orientation="vertical"
-    tools:context="com.example.workstation.quicknumbers.SplashScreenActivity">
+    tools:context="com.kimersoft.workstation.quicknumbers.SplashScreenActivity">
 
     <LinearLayout
         android:id="@+id/secondLayout"
